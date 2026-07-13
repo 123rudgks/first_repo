@@ -3,7 +3,7 @@ const MENU_ITEMS = [
     id: "iam",
     label: "I AM",
     description: "앨범 커버",
-    href: "./index.html",
+    href: "./iam.html",
     icon: '<path d="M5 4.5h14a1.5 1.5 0 0 1 1.5 1.5v12A1.5 1.5 0 0 1 19 19.5H5A1.5 1.5 0 0 1 3.5 18V6A1.5 1.5 0 0 1 5 4.5Z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r=".8" fill="currentColor"/>',
   },
   {
@@ -132,7 +132,7 @@ class AppSidebar extends HTMLElement {
         <div class="pointer-events-none absolute right-[-5rem] bottom-20 size-44 rounded-full bg-brand-light/[0.08] blur-3xl" aria-hidden="true"></div>
 
         <header class="relative flex h-24 shrink-0 items-center border-b border-brand/[0.08] px-5">
-          <a class="sidebar-brand flex min-w-0 items-center gap-3 text-inherit no-underline" href="./index.html" aria-label="Play My Vibe 첫 페이지로 이동">
+          <a class="sidebar-brand flex min-w-0 items-center gap-3 text-inherit no-underline" href="./iam.html" aria-label="Play My Vibe I AM 페이지로 이동">
             <span class="grid size-11 shrink-0 place-items-center rounded-2xl bg-brand text-sm font-black tracking-[-0.04em] text-white shadow-[0_0.55rem_1.1rem_rgba(20,40,160,0.22)]">PV</span>
             <span class="sidebar-label min-w-0">
               <strong class="block overflow-hidden text-sm font-black tracking-[-0.02em] text-ellipsis whitespace-nowrap">Play My Vibe</strong>

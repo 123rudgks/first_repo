@@ -3,93 +3,96 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="음악 취향으로 김경한을 소개하는 Play My Vibe의 I AM 앨범 커버 페이지">
-  <title>I AM | Play My Vibe</title>
+  <meta
+    name="description"
+    content="음악 취향을 통해 한 사람의 분위기를 먼저 경험하는 Play My Vibe 자기소개 앨범의 Intro 페이지"
+  >
+  <title>Intro | Play My Vibe</title>
 
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
   >
   <link rel="stylesheet" href="./css/style.css">
-  <script type="module" src="./js/main.js"></script>
 </head>
 
-<body data-page="iam" class="overflow-x-hidden bg-canvas font-sans text-ink antialiased">
-  <app-sidebar class="contents" current-page="iam"></app-sidebar>
+<body data-page="intro" class="overflow-x-hidden bg-canvas font-sans text-ink antialiased">
+  <main class="relative isolate grid min-h-screen min-h-[100svh] place-items-center overflow-hidden px-5 py-10 sm:px-8 sm:py-14">
+    <div
+      aria-hidden="true"
+      class="animate-blob-float pointer-events-none absolute top-[-7rem] left-[-6rem] size-[24rem] rounded-full bg-brand/[0.1] blur-[100px]"
+    ></div>
+    <div
+      aria-hidden="true"
+      class="animate-pulse-soft pointer-events-none absolute right-[-7rem] bottom-[-8rem] size-[28rem] rounded-full bg-brand-light/[0.12] blur-[110px]"
+    ></div>
+    <div
+      aria-hidden="true"
+      class="intro-dot-pattern pointer-events-none absolute inset-0 opacity-55"
+    ></div>
 
-  <div
-    data-page-shell
-    class="min-h-screen transition-[padding-left] duration-300 ease-in-out lg:pl-72"
-  >
-    <svg aria-hidden="true" class="absolute size-0 overflow-hidden" data-icon-sprite="">
-    <symbol id="icon-play" viewbox="0 0 24 24">
-    <path d="M8 5.5v13l10-6.5L8 5.5Z" fill="currentColor"></path>
-    </symbol>
-    <symbol id="icon-pause" viewbox="0 0 24 24">
-    <path d="M7 5h4v14H7zM13 5h4v14h-4z" fill="currentColor"></path>
-    </symbol>
-    <symbol id="icon-chevron-down" viewbox="0 0 24 24">
-    <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-    </symbol>
-    <symbol id="icon-previous" viewbox="0 0 24 24">
-    <path d="M6 5v14M18 6.5 9 12l9 5.5v-11Z" fill="currentColor"></path>
-    </symbol>
-    <symbol id="icon-next" viewbox="0 0 24 24">
-    <path d="M18 5v14M6 6.5 15 12l-9 5.5v-11Z" fill="currentColor"></path>
-    </symbol>
-    <symbol id="icon-arrow-up" viewbox="0 0 24 24">
-    <path d="m6 11 6-6 6 6M12 5v14" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-    </symbol>
-    <symbol id="icon-send" viewbox="0 0 24 24">
-    <path d="m21 3-8.5 18-3.2-7.3L2 10.5 21 3Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"></path>
-    <path d="m9.3 13.7 4.6-4.6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
-    </symbol>
-    <symbol id="icon-close" viewbox="0 0 24 24">
-    <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
-    </symbol>
-    <symbol id="icon-disc" viewbox="0 0 24 24">
-    <circle cx="12" cy="12" fill="none" r="9" stroke="currentColor" stroke-width="1.7"></circle>
-    <circle cx="12" cy="12" fill="none" r="3" stroke="currentColor" stroke-width="1.7"></circle>
-    <circle cx="12" cy="12" fill="currentColor" r="0.8"></circle>
-    </symbol>
-    <symbol id="icon-heart" viewbox="0 0 24 24">
-    <path d="M20.8 5.8a5.3 5.3 0 0 0-7.5 0L12 7.1l-1.3-1.3a5.3 5.3 0 1 0-7.5 7.5L12 22l8.8-8.7a5.3 5.3 0 0 0 0-7.5Z" fill="currentColor"></path>
-    </symbol>
-    </svg>
+    <section class="relative z-10 w-full max-w-5xl overflow-hidden rounded-[2rem] border border-brand/10 bg-surface/88 shadow-[0_2rem_5rem_rgba(15,23,42,0.14)] backdrop-blur-xl sm:rounded-[2.5rem]">
+      <div class="grid min-h-[min(48rem,calc(100svh-5rem))] lg:grid-cols-[0.88fr_1.12fr]">
+        <div class="relative flex min-h-[17rem] items-center justify-center overflow-hidden bg-brand px-6 py-10 text-white sm:min-h-[20rem] sm:px-10 lg:min-h-full">
+          <div aria-hidden="true" class="absolute inset-0 intro-wave-grid opacity-30"></div>
+          <div aria-hidden="true" class="absolute -top-20 -right-20 size-64 rounded-full border-[2rem] border-white/10"></div>
+          <div aria-hidden="true" class="absolute -bottom-28 -left-24 size-72 rounded-full border-[2.4rem] border-white/[0.08]"></div>
 
-    <main>
-      <section class="relative grid min-h-screen place-items-center overflow-hidden px-[clamp(1rem,4vw,2rem)] py-[clamp(5rem,9vw,7.5rem)] max-sm:pb-24 min-h-[100svh]" id="album-cover">
-      <div aria-hidden="true" class="pointer-events-none absolute top-1/4 -left-12 size-64 rounded-full bg-brand/[0.06] blur-[90px]"></div>
-      <div aria-hidden="true" class="pointer-events-none absolute right-[-3rem] bottom-1/4 size-80 rounded-full bg-brand-light/[0.06] blur-[90px]"></div>
-      <div class="relative z-10 flex w-full max-w-[38rem] flex-col items-center text-center">
-      <a aria-label="트랙 목록 페이지로 이동" class="group relative mb-10 aspect-square w-[clamp(16rem,62vw,20rem)] cursor-pointer rounded-3xl bg-transparent p-0 transition-[transform,filter] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-2 hover:drop-shadow-[0_1.4rem_1.5rem_rgba(20,40,160,0.2)] no-underline text-inherit" href="./tracklist.html">
-      <span aria-hidden="true" class="vinyl-grooves absolute inset-y-0 right-[-0.9rem] left-0 grid translate-x-2 place-items-center rounded-full border-4 border-brand/10 shadow-[inset_0_0_2rem_rgba(0,0,0,0.55)] transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:translate-x-8">
-      <span class="vinyl-label aspect-square w-24 rounded-full border-2 border-brand/25"></span>
-      </span>
-      <span class="relative z-[1] block size-full overflow-hidden rounded-3xl border border-brand/10 bg-surface shadow-[0_0.8rem_1.5rem_rgba(15,23,42,0.12)]">
-      <img alt="Play My Vibe 앨범 커버" class="size-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105" src="./assets/images/iam.png"/>
-      <span aria-hidden="true" class="absolute inset-0 bg-linear-to-t from-black/40 to-55% to-transparent"></span>
-      <span class="absolute bottom-4 left-4 z-[2] rounded-[0.45rem] bg-brand/80 px-2.5 py-1.5 text-[0.7rem] font-[750] tracking-[0.1em] text-white uppercase backdrop-blur-sm">16기 Mini Album</span>
-      </span>
-      </a>
-      <p class="m-0 rounded-full bg-brand/[0.08] px-3 py-1.5 text-xs font-extrabold tracking-[0.14em] text-brand uppercase">Self-introduction portfolio</p>
-      <h1 class="mt-3.5 mb-0 text-[clamp(2.5rem,8vw,3.3rem)] leading-none font-black tracking-[-0.045em]">I AM</h1>
-      <p class="mt-2 mb-0 text-[clamp(1.25rem,4vw,1.55rem)] font-extrabold text-brand">김경한</p>
-      <p class="mt-4 mb-0 text-[clamp(0.9rem,2vw,1rem)] leading-7 text-muted">
-                나라는 사람을 하나의 앨범으로 구성한,<br/>
-                음악 취향으로 알아보는 나의 정체성과 스토리
-              </p>
-      <p class="mt-3 mb-8 rounded-full border border-brand/10 bg-surface px-3 py-1.5 text-xs font-[650] text-muted shadow-[0_0.2rem_0.6rem_rgba(15,23,42,0.05)]">5 Tracks · About 5 min</p>
-      <a class="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2.5 rounded-full bg-brand px-7 py-3.5 font-[750] text-white shadow-[0_0.8rem_1.8rem_rgba(20,40,160,0.22)] transition-[background-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:bg-brand-light hover:shadow-[0_1rem_2rem_rgba(20,40,160,0.3)] active:scale-[0.97] no-underline text-inherit" href="./tracklist.html">
-      <svg aria-hidden="true" class="size-[1.1em] shrink-0"><use href="#icon-play"></use></svg>
-      <span>Play My Vibe</span>
-      </a>
+          <div class="relative flex flex-col items-center text-center">
+            <p class="mb-5 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-[0.68rem] font-extrabold tracking-[0.18em] text-white/80 uppercase backdrop-blur-sm">
+              Track 00 · Intro
+            </p>
+
+            <div class="relative mb-7 grid size-36 place-items-center rounded-full border border-white/20 bg-ink shadow-[0_1.3rem_2.7rem_rgba(0,0,0,0.28)] sm:size-44">
+              <span aria-hidden="true" class="intro-vinyl-rings absolute inset-2 rounded-full"></span>
+              <span class="relative z-10 grid size-16 place-items-center rounded-full bg-white text-center text-[0.64rem] leading-tight font-black tracking-[-0.03em] text-brand shadow-inner sm:size-[4.5rem]">
+                PLAY<br>MY VIBE
+              </span>
+              <span class="absolute top-1/2 left-1/2 z-20 size-2 -translate-1/2 rounded-full bg-ink" aria-hidden="true"></span>
+            </div>
+
+            <p class="m-0 text-xs font-bold tracking-[0.14em] text-white/65 uppercase">A self-introduction album</p>
+            <p class="mt-2 mb-0 text-[clamp(1.65rem,5vw,2.35rem)] leading-none font-black tracking-[-0.045em]">Before the first track</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col justify-center px-6 py-10 sm:px-12 sm:py-14 lg:px-16 lg:py-16">
+          <p class="animate-intro-rise m-0 text-xs font-extrabold tracking-[0.16em] text-brand uppercase">Why this album?</p>
+          <h1 class="animate-intro-rise-delay-1 mt-4 mb-0 text-[clamp(2.15rem,6vw,4.15rem)] leading-[1.08] font-black tracking-[-0.055em] text-balance">
+            음악 취향에는<br>
+            그 사람의 <span class="text-brand">vibe</span>가 담겨 있습니다.
+          </h1>
+
+          <div class="animate-intro-rise-delay-2 mt-8 grid gap-4 text-[clamp(0.94rem,2vw,1.06rem)] leading-[1.85] text-muted sm:mt-10">
+            <p class="m-0">
+              사람의 음악 취향을 들여다보면 그 사람만의 분위기를 조금은 느낄 수 있다고 생각합니다.
+            </p>
+            <p class="m-0">
+              경력이나 기술처럼 나를 설명하는 정보를 먼저 보여주는 것도 좋지만, 조금 더 친근하고 호기심이 생기는 방식으로 첫인사를 건네고 싶었습니다.
+            </p>
+            <p class="m-0">
+              제가 좋아하는 음악을 따라가며 먼저 저의 vibe를 느껴보세요. 더 자세한 모습은 그다음부터 천천히 알아가면 좋겠습니다.
+            </p>
+          </div>
+
+          <div class="animate-intro-rise-delay-3 mt-10 flex flex-col gap-4 border-t border-brand/10 pt-7 sm:mt-12 sm:flex-row sm:items-center sm:justify-between">
+            <p class="m-0 text-xs font-bold leading-5 text-muted">
+              5 Tracks · About 5 min<br>
+              <span class="text-brand">김경한의 첫 번째 자기소개 앨범</span>
+            </p>
+            <a
+              class="group inline-flex min-h-13 items-center justify-center gap-3 rounded-full bg-brand px-7 py-3.5 text-sm font-extrabold text-white no-underline shadow-[0_0.9rem_2rem_rgba(20,40,160,0.25)] transition-[background-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:bg-brand-light hover:shadow-[0_1.1rem_2.3rem_rgba(20,40,160,0.32)] active:scale-[0.97] sm:min-w-44"
+              href="./iam.html"
+            >
+              <span>앨범 시작하기</span>
+              <svg aria-hidden="true" class="size-4.5 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24">
+                <path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
       </div>
-      <a aria-label="트랙 목록 페이지로 이동" class="animate-bounce-cue absolute bottom-6 left-1/2 z-[3] grid size-11 cursor-pointer place-items-center rounded-full bg-transparent text-muted transition-colors duration-150 hover:bg-brand/[0.08] hover:text-brand no-underline text-inherit" href="./tracklist.html">
-      <svg aria-hidden="true" class="size-[1.1em] shrink-0"><use href="#icon-chevron-down"></use></svg>
-      </a>
-      </section>
-    </main>
-  </div>
+    </section>
+  </main>
 </body>
 </html>

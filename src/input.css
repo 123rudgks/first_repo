@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @source "../index.html";
+@source "../iam.html";
 @source "../tracklist.html";
 @source "../now-playing.html";
 @source "../outro.html";
@@ -27,6 +28,10 @@
   --animate-pulse-soft: pulse-soft 8s ease-in-out infinite;
   --animate-blob-float: blob-float 15s ease-in-out infinite;
   --animate-modal-enter: modal-enter 240ms ease both;
+  --animate-intro-rise: intro-rise 720ms 80ms ease both;
+  --animate-intro-rise-delay-1: intro-rise 720ms 180ms ease both;
+  --animate-intro-rise-delay-2: intro-rise 720ms 300ms ease both;
+  --animate-intro-rise-delay-3: intro-rise 720ms 420ms ease both;
 }
 
 @layer base {
@@ -152,5 +157,42 @@
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+
+@utility intro-dot-pattern {
+  background-image: radial-gradient(rgb(20 40 160 / 13%) 1.2px, transparent 1.2px);
+  background-size: 26px 26px;
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 92%);
+}
+
+@utility intro-wave-grid {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 12%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 12%) 1px, transparent 1px);
+  background-size: 32px 32px;
+  transform: perspective(500px) rotateX(58deg) scale(1.35);
+  transform-origin: center bottom;
+}
+
+@utility intro-vinyl-rings {
+  background: repeating-radial-gradient(
+    circle,
+    rgb(255 255 255 / 8%) 0,
+    rgb(255 255 255 / 8%) 1px,
+    transparent 2px,
+    transparent 7px
+  );
+}
+
+@keyframes intro-rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
