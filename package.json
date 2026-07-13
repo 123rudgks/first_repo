@@ -1,0 +1,14 @@
+{
+  "name": "play-my-vibe-tailwind",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "tailwindcss -i ./src/input.css -o ./css/style.css --watch",
+    "build": "tailwindcss -i ./src/input.css -o ./css/style.css --minify"
+  },
+  "description": "Play My Vibe portfolio refactored with Tailwind CSS v4",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.2",
+    "tailwindcss": "^4.3.2"
+  },
+  "private": true
+}

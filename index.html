@@ -17,9 +17,9 @@
   <script src="./js/main.js" defer></script>
 </head>
 
-<body>
+<body class="overflow-x-hidden bg-canvas font-sans text-ink antialiased">
   <!-- 재사용할 SVG 아이콘 -->
-  <svg class="svg-sprite" aria-hidden="true">
+  <svg class="absolute size-0 overflow-hidden" aria-hidden="true">
     <symbol id="icon-play" viewBox="0 0 24 24">
       <path d="M8 5.5v13l10-6.5L8 5.5Z" fill="currentColor"/>
     </symbol>
@@ -57,269 +57,284 @@
 
   <div
     id="toast-notification"
-    class="toast"
+    class="fixed right-[clamp(1rem,4vw,1.5rem)] bottom-[clamp(1rem,4vw,1.5rem)] z-[120] flex w-[calc(100%_-_2rem)] max-w-[23rem] translate-y-5 items-center gap-3 rounded-2xl bg-ink px-4 py-3.5 text-white opacity-0 shadow-[0_1rem_2.5rem_rgba(15,23,42,0.24)] transition-[opacity,transform] duration-300 ease-in-out"
     role="status"
     aria-live="polite"
     aria-atomic="true"
     hidden
   >
-    <span class="toast__icon" aria-hidden="true">i</span>
-    <p id="toast-message" class="toast__message"></p>
+    <span class="grid size-8 shrink-0 place-items-center rounded-full bg-brand text-xs font-[850]" aria-hidden="true">i</span>
+    <p id="toast-message" class="m-0 flex-1 text-[0.8rem] leading-6 font-[650]"></p>
     <button
       id="toast-close-button"
-      class="toast__close"
+      class="grid size-8 cursor-pointer place-items-center rounded-full bg-transparent text-white/60 transition-colors duration-150 hover:bg-white/10 hover:text-white"
       type="button"
       aria-label="안내 메시지 닫기"
     >
-      <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+      <svg class="size-[1.1em] shrink-0" aria-hidden="true"><use href="#icon-close"></use></svg>
     </button>
   </div>
 
   <main>
     <!-- 01. Album Cover -->
-    <section id="album-cover" class="section section--hero">
-      <div class="section-decoration section-decoration--hero-left" aria-hidden="true"></div>
-      <div class="section-decoration section-decoration--hero-right" aria-hidden="true"></div>
+    <section
+      id="album-cover"
+      class="relative grid min-h-screen place-items-center overflow-hidden px-[clamp(1rem,4vw,2rem)] py-[clamp(5rem,9vw,7.5rem)] max-sm:pb-24"
+    >
+      <div class="pointer-events-none absolute top-1/4 -left-12 size-64 rounded-full bg-brand/[0.06] blur-[90px]" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute right-[-3rem] bottom-1/4 size-80 rounded-full bg-brand-light/[0.06] blur-[90px]" aria-hidden="true"></div>
 
-      <div class="hero">
+      <div class="relative z-10 flex w-full max-w-[38rem] flex-col items-center text-center">
         <button
-          class="album-art"
+          class="group relative mb-10 aspect-square w-[clamp(16rem,62vw,20rem)] cursor-pointer rounded-3xl bg-transparent p-0 transition-[transform,filter] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-2 hover:drop-shadow-[0_1.4rem_1.5rem_rgba(20,40,160,0.2)]"
           type="button"
           data-scroll-target="track-list"
           aria-label="트랙 목록으로 이동"
         >
-          <span class="album-art__vinyl" aria-hidden="true">
-            <span class="album-art__vinyl-label"></span>
+          <span class="vinyl-grooves absolute inset-y-0 right-[-0.9rem] left-0 grid translate-x-2 place-items-center rounded-full border-4 border-brand/10 shadow-[inset_0_0_2rem_rgba(0,0,0,0.55)] transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:translate-x-8" aria-hidden="true">
+            <span class="vinyl-label aspect-square w-24 rounded-full border-2 border-brand/25"></span>
           </span>
 
-          <span class="album-art__cover">
+          <span class="relative z-[1] block size-full overflow-hidden rounded-3xl border border-brand/10 bg-surface shadow-[0_0.8rem_1.5rem_rgba(15,23,42,0.12)]">
             <img
+              class="size-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
               src="./assets/images/iam.png"
               alt="Play My Vibe 앨범 커버"
             >
-            <span class="album-art__overlay" aria-hidden="true"></span>
-            <span class="album-art__label">16기 Mini Album</span>
+            <span class="absolute inset-0 bg-linear-to-t from-black/40 to-55% to-transparent" aria-hidden="true"></span>
+            <span class="absolute bottom-4 left-4 z-[2] rounded-[0.45rem] bg-brand/80 px-2.5 py-1.5 text-[0.7rem] font-[750] tracking-[0.1em] text-white uppercase backdrop-blur-sm">16기 Mini Album</span>
           </span>
         </button>
 
-        <p class="eyebrow">Self-introduction portfolio</p>
-        <h1 class="hero__title">I AM</h1>
-        <p class="hero__name">김경한</p>
+        <p class="m-0 rounded-full bg-brand/[0.08] px-3 py-1.5 text-xs font-extrabold tracking-[0.14em] text-brand uppercase">Self-introduction portfolio</p>
+        <h1 class="mt-3.5 mb-0 text-[clamp(2.5rem,8vw,3.3rem)] leading-none font-black tracking-[-0.045em]">I AM</h1>
+        <p class="mt-2 mb-0 text-[clamp(1.25rem,4vw,1.55rem)] font-extrabold text-brand">김경한</p>
 
-        <p class="hero__description">
+        <p class="mt-4 mb-0 text-[clamp(0.9rem,2vw,1rem)] leading-7 text-muted">
           나라는 사람을 하나의 앨범으로 구성한,<br>
           음악 취향으로 알아보는 나의 정체성과 스토리
         </p>
 
-        <p class="hero__meta">5 Tracks · About 5 min</p>
+        <p class="mt-3 mb-8 rounded-full border border-brand/10 bg-surface px-3 py-1.5 text-xs font-[650] text-muted shadow-[0_0.2rem_0.6rem_rgba(15,23,42,0.05)]">5 Tracks · About 5 min</p>
 
         <button
-          class="button button--primary"
+          class="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2.5 rounded-full bg-brand px-7 py-3.5 font-[750] text-white shadow-[0_0.8rem_1.8rem_rgba(20,40,160,0.22)] transition-[background-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:bg-brand-light hover:shadow-[0_1rem_2rem_rgba(20,40,160,0.3)] active:scale-[0.97]"
           type="button"
           data-scroll-target="track-list"
         >
-          <svg class="icon" aria-hidden="true"><use href="#icon-play"></use></svg>
+          <svg class="size-[1.1em] shrink-0" aria-hidden="true"><use href="#icon-play"></use></svg>
           <span>Play My Vibe</span>
         </button>
       </div>
 
       <button
-        class="scroll-cue"
+        class="animate-bounce-cue absolute bottom-6 left-1/2 z-[3] grid size-11 cursor-pointer place-items-center rounded-full bg-transparent text-muted transition-colors duration-150 hover:bg-brand/[0.08] hover:text-brand"
         type="button"
         data-scroll-target="track-list"
         aria-label="트랙 목록으로 이동"
       >
-        <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
+        <svg class="size-[1.1em] shrink-0" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
       </button>
     </section>
 
     <!-- 02. Track List -->
-    <section id="track-list" class="section section--track-list">
-      <div class="section-decoration section-decoration--track-left" aria-hidden="true"></div>
-      <div class="section-decoration section-decoration--track-right" aria-hidden="true"></div>
-      <div class="track-list-pattern" aria-hidden="true"></div>
-      <div class="record-outline" aria-hidden="true">
-        <span></span>
-        <span></span>
+    <section
+      id="track-list"
+      class="relative flex min-h-screen items-center overflow-hidden px-[clamp(1rem,4vw,2rem)] py-[clamp(5rem,9vw,7.5rem)] max-sm:min-h-0 max-sm:py-20"
+    >
+      <div class="animate-blob-float pointer-events-none absolute top-8 left-[6%] size-80 rounded-full bg-brand/[0.06] blur-[90px]" aria-hidden="true"></div>
+      <div class="animate-pulse-soft pointer-events-none absolute right-[8%] bottom-8 size-[25rem] rounded-full bg-brand-light/[0.05] blur-[90px]" aria-hidden="true"></div>
+      <div class="track-list-pattern pointer-events-none absolute inset-0 opacity-[0.03]" aria-hidden="true"></div>
+      <div class="absolute top-1/3 -right-20 grid aspect-square w-96 place-items-center rounded-full border-2 border-brand/[0.05] max-sm:hidden" aria-hidden="true">
+        <span class="grid aspect-square w-64 place-items-center rounded-full border border-brand/[0.05]">
+          <span class="aspect-square w-32 rounded-full border border-brand/[0.05]"></span>
+        </span>
       </div>
 
-      <div class="container">
-        <header class="section-header">
-          <p class="section-header__eyebrow">Tracklist</p>
-          <h2 class="section-header__title">나를 표현하는 다섯 곡</h2>
-          <p class="section-header__description">
+      <div class="relative z-[2] mx-auto w-full max-w-5xl">
+        <header class="mb-[clamp(2.5rem,5vw,3.5rem)] text-center">
+          <p class="m-0 text-xs font-extrabold tracking-[0.14em] text-brand uppercase">Tracklist</p>
+          <h2 class="mt-[0.3rem] mb-0 text-[clamp(2rem,5vw,2.6rem)] font-[850] tracking-[-0.035em]">나를 표현하는 다섯 곡</h2>
+          <p class="mx-auto mt-3 mb-0 max-w-[38rem] text-[clamp(0.9rem,2vw,1rem)] text-muted">
             각 트랙을 클릭하면 해당 곡에 담긴 저의 경험과 이야기를 만날 수 있습니다.
           </p>
         </header>
 
-        <div class="track-panel">
-          <div class="track-table-header" aria-hidden="true">
-            <span class="track-table-header__number">#</span>
-            <span class="track-table-header__cover">커버</span>
-            <span class="track-table-header__info">곡 정보</span>
-            <span class="track-table-header__vibe">나의 Vibe</span>
+        <div class="relative overflow-hidden rounded-[2.5rem] border border-white/65 bg-white/65 p-[clamp(1.25rem,4vw,2.5rem)] shadow-[0_1rem_2.5rem_rgba(20,40,160,0.07)] backdrop-blur-2xl before:absolute before:top-0 before:left-0 before:size-12 before:rounded-full before:bg-white/25 before:blur-lg before:content-[''] max-sm:rounded-[1.6rem]">
+          <div class="mb-4 hidden grid-cols-[3rem_4rem_minmax(0,1fr)_10rem] items-center border-b border-brand/10 px-6 pb-4 text-[0.72rem] font-extrabold tracking-[0.08em] text-muted uppercase md:grid" aria-hidden="true">
+            <span class="text-center">#</span>
+            <span>커버</span>
+            <span>곡 정보</span>
+            <span class="text-right">나의 Vibe</span>
           </div>
 
-          <div id="tracks-container" class="track-list" aria-label="트랙 목록"></div>
+          <div id="tracks-container" class="grid gap-3.5" aria-label="트랙 목록"></div>
         </div>
       </div>
     </section>
 
     <!-- 03. Now Playing -->
-    <section id="now-playing" class="section section--player">
-      <div class="section-decoration section-decoration--player" aria-hidden="true"></div>
+    <section
+      id="now-playing"
+      class="relative flex min-h-screen items-center overflow-hidden border-y border-brand/10 bg-surface px-[clamp(1rem,4vw,2rem)] py-[clamp(5rem,9vw,7.5rem)] max-sm:min-h-0 max-sm:py-20"
+    >
+      <div class="pointer-events-none absolute top-0 right-0 size-96 rounded-full bg-brand/[0.025] blur-[90px]" aria-hidden="true"></div>
 
-      <div class="container">
-        <header class="section-header">
-          <p class="section-header__eyebrow">Now Playing</p>
-          <h2 class="section-header__title">뮤직 플레이어 인터페이스</h2>
+      <div class="relative z-[2] mx-auto w-full max-w-5xl">
+        <header class="mb-[clamp(2.5rem,5vw,3.5rem)] text-center">
+          <p class="m-0 text-xs font-extrabold tracking-[0.14em] text-brand uppercase">Now Playing</p>
+          <h2 class="mt-[0.3rem] mb-0 text-[clamp(2rem,5vw,2.6rem)] font-[850] tracking-[-0.035em]">뮤직 플레이어 인터페이스</h2>
         </header>
 
-        <div class="player-layout">
-          <article class="player-card" aria-label="선택한 트랙 정보">
-            <div class="player-disc-frame">
-              <div class="player-disc-shadow" aria-hidden="true"></div>
+        <div class="grid gap-[clamp(2.5rem,6vw,3.5rem)] lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-stretch">
+          <article class="relative flex flex-col justify-center rounded-4xl border border-brand/10 bg-canvas p-[clamp(1.5rem,4vw,2rem)] shadow-[inset_0_0_2rem_rgba(20,40,160,0.025)]" aria-label="선택한 트랙 정보">
+            <div class="relative mx-auto mb-8 aspect-square w-full max-w-80">
+              <div class="absolute inset-0 scale-95 rounded-full bg-brand/[0.06] blur-[18px]" aria-hidden="true"></div>
 
-              <div id="player-disc" class="player-disc is-playing">
-                <span class="player-disc__groove player-disc__groove--1" aria-hidden="true"></span>
-                <span class="player-disc__groove player-disc__groove--2" aria-hidden="true"></span>
-                <span class="player-disc__groove player-disc__groove--3" aria-hidden="true"></span>
-                <span class="player-disc__groove player-disc__groove--4" aria-hidden="true"></span>
+              <div id="player-disc" class="relative grid size-full animate-record-spin place-items-center rounded-full border border-ink/10 bg-zinc-900 p-2 shadow-[0_1rem_2rem_rgba(15,23,42,0.22)]">
+                <span class="absolute inset-4 rounded-full border border-black/30 opacity-45" aria-hidden="true"></span>
+                <span class="absolute inset-10 rounded-full border border-black/30 opacity-45" aria-hidden="true"></span>
+                <span class="absolute inset-16 rounded-full border border-black/30 opacity-45" aria-hidden="true"></span>
+                <span class="absolute inset-24 rounded-full border border-black/30 opacity-45" aria-hidden="true"></span>
 
-                <div class="player-disc__image-frame">
+                <div class="relative grid size-full place-items-center overflow-hidden rounded-full border-2 border-zinc-800">
                   <img
                     id="np-cover"
+                    class="size-full object-cover"
                     src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=500&auto=format&fit=crop"
                     data-fallback-src="https://placehold.co/500x500/1428A0/FFFFFF?text=PLAYING"
                     alt="선택한 트랙 커버"
                   >
-                  <span class="player-disc__center" aria-hidden="true">
-                    <span></span>
+                  <span class="absolute grid aspect-square w-14 place-items-center rounded-full border-4 border-zinc-800 bg-zinc-900 shadow-[inset_0_0_0.8rem_rgba(0,0,0,0.4)]" aria-hidden="true">
+                    <span class="aspect-square w-4 rounded-full bg-canvas"></span>
                   </span>
                 </div>
               </div>
             </div>
 
-            <div class="player-track-heading">
-              <div class="player-track-heading__text">
-                <h3 id="np-title">Track Title</h3>
-                <p id="np-artist">Artist Name</p>
+            <div class="mb-6 flex items-center justify-between gap-4">
+              <div class="min-w-0">
+                <h3 id="np-title" class="m-0 overflow-hidden text-[clamp(1.3rem,3vw,1.55rem)] font-[850] text-ellipsis whitespace-nowrap">Track Title</h3>
+                <p id="np-artist" class="mt-1 mb-0 overflow-hidden text-[0.95rem] text-ellipsis whitespace-nowrap text-muted">Artist Name</p>
               </div>
 
-              <div class="equalizer is-playing" aria-hidden="true">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+              <div id="equalizer" class="flex h-6 shrink-0 items-end gap-[3px] opacity-80" aria-hidden="true">
+                <span class="h-1/2 w-1 origin-bottom animate-equalizer-1 rounded-full bg-brand"></span>
+                <span class="h-[90%] w-1 origin-bottom animate-equalizer-2 rounded-full bg-brand"></span>
+                <span class="h-[35%] w-1 origin-bottom animate-equalizer-3 rounded-full bg-brand"></span>
+                <span class="h-[70%] w-1 origin-bottom animate-equalizer-4 rounded-full bg-brand"></span>
               </div>
             </div>
 
-            <div class="player-progress" aria-label="고정된 재생 진행 상태">
-              <div class="player-progress__track" aria-hidden="true">
-                <div id="np-progress-fill" class="player-progress__fill"></div>
-                <span id="np-progress-thumb" class="player-progress__thumb"></span>
+            <div class="mb-7" aria-label="고정된 재생 진행 상태">
+              <div class="relative h-1.5 rounded-full bg-brand/10" aria-hidden="true">
+                <div id="np-progress-fill" class="h-full w-0 rounded-[inherit] bg-brand transition-[width] duration-300"></div>
+                <span id="np-progress-thumb" class="absolute top-1/2 left-0 aspect-square w-3.5 -translate-1/2 rounded-full bg-brand shadow-[0_0.2rem_0.5rem_rgba(20,40,160,0.24)] transition-[left] duration-300"></span>
               </div>
-              <div class="player-progress__time">
+              <div class="mt-2.5 flex justify-between text-xs font-[750] text-muted">
                 <span id="np-time-current">00:00</span>
                 <span id="np-time-total">00:00</span>
               </div>
             </div>
 
-            <div class="player-controls">
+            <div class="flex items-center justify-center gap-6">
               <button
                 id="previous-track-button"
-                class="icon-button"
+                class="grid aspect-square w-12 cursor-pointer place-items-center rounded-full bg-transparent text-ink transition-[background-color,color,transform] duration-150 enabled:hover:bg-brand/[0.08] enabled:hover:text-brand enabled:active:scale-90 disabled:cursor-default disabled:opacity-30"
                 type="button"
                 aria-label="이전 트랙"
               >
-                <svg class="icon icon--large" aria-hidden="true">
+                <svg class="size-[1.35rem] shrink-0" aria-hidden="true">
                   <use href="#icon-previous"></use>
                 </svg>
               </button>
 
               <button
                 id="visual-play-button"
-                class="player-controls__play"
+                class="grid aspect-square w-16 cursor-pointer place-items-center rounded-full bg-brand text-white shadow-[0_0.7rem_1.3rem_rgba(20,40,160,0.28)] transition-[background-color,box-shadow,transform] duration-150 hover:scale-105 hover:bg-brand-light hover:shadow-[0_0.9rem_1.6rem_rgba(20,40,160,0.34)] active:scale-95"
                 type="button"
                 aria-label="가상 재생 일시정지"
                 aria-pressed="true"
               >
-                <svg class="icon icon--large" aria-hidden="true">
+                <svg class="size-[1.35rem] shrink-0" aria-hidden="true">
                   <use id="visual-play-icon" href="#icon-pause"></use>
                 </svg>
               </button>
 
               <button
                 id="next-track-button"
-                class="icon-button"
+                class="grid aspect-square w-12 cursor-pointer place-items-center rounded-full bg-transparent text-ink transition-[background-color,color,transform] duration-150 enabled:hover:bg-brand/[0.08] enabled:hover:text-brand enabled:active:scale-90 disabled:cursor-default disabled:opacity-30"
                 type="button"
                 aria-label="다음 트랙"
               >
-                <svg class="icon icon--large" aria-hidden="true">
+                <svg class="size-[1.35rem] shrink-0" aria-hidden="true">
                   <use href="#icon-next"></use>
                 </svg>
               </button>
             </div>
           </article>
 
-          <article id="np-content-area" class="story-panel" aria-live="polite">
-            <p id="np-vibe-badge" class="vibe-badge">
-              <svg class="icon icon--small" aria-hidden="true">
+          <article id="np-content-area" class="flex flex-col justify-center transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]" aria-live="polite">
+            <p id="np-vibe-badge" class="mb-4 inline-flex w-fit items-center gap-1.5 rounded-xl border border-brand/20 bg-brand/[0.08] px-3.5 py-1.5 text-[0.85rem] font-extrabold text-brand">
+              <svg class="size-3.5 shrink-0" aria-hidden="true">
                 <use href="#icon-heart"></use>
               </svg>
               <span>대표 키워드</span>
             </p>
 
-            <h3 id="np-summary" class="story-panel__summary">
+            <h3 id="np-summary" class="mt-0 mb-6 text-[clamp(1.45rem,4vw,2rem)] leading-[1.3] font-[850] tracking-[-0.025em]">
               한 줄 소개가 들어가는 자리입니다.
             </h3>
 
-            <p id="np-story" class="story-panel__story">
+            <p id="np-story" class="mt-0 mb-8 border-l-4 border-brand/10 py-1 pl-6 text-[clamp(1rem,2.5vw,1.1rem)] leading-[1.8] font-[520] whitespace-pre-line text-muted">
               여기에 선택한 음악과 관련된 본인의 경험과 이야기가 표시됩니다.
             </p>
 
-            <div id="np-hashtags" class="hashtag-list" aria-label="관련 키워드"></div>
+            <div id="np-hashtags" class="flex flex-wrap gap-2.5" aria-label="관련 키워드"></div>
           </article>
         </div>
       </div>
     </section>
 
     <!-- 04. Outro -->
-    <section id="outro" class="section section--outro">
-      <div class="section-decoration section-decoration--outro" aria-hidden="true"></div>
+    <section
+      id="outro"
+      class="relative grid min-h-screen place-items-center overflow-hidden px-[clamp(1rem,4vw,2rem)] py-[clamp(5rem,9vw,7.5rem)] max-sm:min-h-0 max-sm:py-20"
+    >
+      <div class="pointer-events-none absolute top-1/2 left-1/2 size-[38rem] -translate-1/2 rounded-full bg-brand/[0.035] blur-[120px]" aria-hidden="true"></div>
 
-      <div class="outro">
-        <svg class="outro__disc icon" aria-hidden="true">
+      <div class="relative z-[2] flex w-full max-w-[42rem] flex-col items-center text-center">
+        <svg class="mb-8 size-[clamp(3.5rem,10vw,4.5rem)] shrink-0 text-brand/40" aria-hidden="true">
           <use href="#icon-disc"></use>
         </svg>
 
-        <h2 class="outro__title">
+        <h2 class="m-0 text-[clamp(2.25rem,7vw,3.2rem)] leading-[1.16] font-black tracking-[-0.045em]">
           This was my vibe.<br>
-          <span>What’s yours?</span>
+          <span class="text-brand">What’s yours?</span>
         </h2>
 
-        <p class="outro__description">
+        <p class="mt-6 mb-12 text-[clamp(0.95rem,2.5vw,1.08rem)] leading-[1.8] text-muted">
           플레이리스트를 들어주셔서 감사합니다.<br>
           제가 어떤 느낌의 사람인지 전달이 되었나요?<br>
           여러분들의 플레이리스트도 궁금합니다.
         </p>
 
-        <div class="outro__actions">
+        <div class="flex flex-wrap justify-center gap-4 max-sm:w-full max-sm:flex-col">
           <button
-            class="button button--outline"
+            class="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2.5 rounded-full border-2 border-brand/25 bg-transparent px-7 py-3.5 font-[750] text-ink transition-[background-color,border-color,color,transform] duration-300 hover:-translate-y-0.5 hover:border-brand hover:bg-brand hover:text-white active:scale-[0.97] max-sm:w-full"
             type="button"
             data-scroll-target="album-cover"
           >
-            <svg class="icon" aria-hidden="true"><use href="#icon-arrow-up"></use></svg>
+            <svg class="size-[1.1em] shrink-0" aria-hidden="true"><use href="#icon-arrow-up"></use></svg>
             <span>처음부터 다시 보기</span>
           </button>
 
           <button
             id="open-contact-modal"
-            class="button button--dark"
+            class="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2.5 rounded-full bg-ink px-7 py-3.5 font-[750] text-white transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-brand active:scale-[0.97] max-sm:w-full"
             type="button"
           >
-            <svg class="icon" aria-hidden="true"><use href="#icon-send"></use></svg>
+            <svg class="size-[1.1em] shrink-0" aria-hidden="true"><use href="#icon-send"></use></svg>
             <span>연락처 & SNS</span>
           </button>
         </div>
@@ -330,53 +345,53 @@
   <!-- Contact Modal -->
   <div
     id="contact-modal"
-    class="modal"
+    class="fixed inset-0 z-[100] grid place-items-center p-4"
     role="dialog"
     aria-modal="true"
     aria-labelledby="contact-modal-title"
     hidden
   >
-    <div class="modal__backdrop" data-modal-close></div>
+    <div class="absolute inset-0 bg-black/40 backdrop-blur-md" data-modal-close></div>
 
-    <section class="modal__panel">
-      <header class="modal__header">
+    <section class="relative z-[1] w-full max-w-md animate-modal-enter rounded-[1.75rem] border border-brand/10 bg-surface p-[clamp(1.5rem,5vw,2rem)] shadow-[0_2rem_4rem_rgba(15,23,42,0.25)]">
+      <header class="mb-6 flex items-start justify-between gap-4">
         <div>
-          <h2 id="contact-modal-title">연락처 & 소셜 네트워크</h2>
-          <p>김경한 학우의 소식을 더 만나보세요.</p>
+          <h2 id="contact-modal-title" class="m-0 text-xl font-[850]">연락처 & 소셜 네트워크</h2>
+          <p class="mt-1 mb-0 text-[0.8rem] text-muted">김경한 학우의 소식을 더 만나보세요.</p>
         </div>
 
         <button
-          class="modal__close"
+          class="grid aspect-square w-8 shrink-0 cursor-pointer place-items-center rounded-full bg-transparent text-muted transition-colors duration-150 hover:bg-brand/[0.08] hover:text-brand"
           type="button"
           data-modal-close
           aria-label="연락처 창 닫기"
         >
-          <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+          <svg class="size-[1.1em] shrink-0" aria-hidden="true"><use href="#icon-close"></use></svg>
         </button>
       </header>
 
-      <div class="contact-list">
-        <a class="contact-item" href="#" aria-label="Facebook 김경한">
-          <span class="contact-item__icon contact-item__icon--facebook">f</span>
+      <div class="grid gap-2.5">
+        <a class="flex items-center gap-4 rounded-2xl border border-transparent p-3 text-inherit no-underline transition-[background-color,border-color] duration-150 hover:border-brand/10 hover:bg-brand/[0.045]" href="#" aria-label="Facebook 김경한">
+          <span class="grid aspect-square w-10 shrink-0 place-items-center rounded-full bg-[#1877f2]/10 text-[0.9rem] font-[850] text-[#1877f2]">f</span>
           <span>
-            <small>Facebook</small>
-            <strong>김경한</strong>
+            <small class="block text-[0.72rem] text-muted">Facebook</small>
+            <strong class="mt-0.5 block text-[0.9rem]">김경한</strong>
           </span>
         </a>
 
-        <a class="contact-item" href="#" aria-label="Instagram 프로필">
-          <span class="contact-item__icon contact-item__icon--instagram">◎</span>
+        <a class="flex items-center gap-4 rounded-2xl border border-transparent p-3 text-inherit no-underline transition-[background-color,border-color] duration-150 hover:border-brand/10 hover:bg-brand/[0.045]" href="#" aria-label="Instagram 프로필">
+          <span class="grid aspect-square w-10 shrink-0 place-items-center rounded-full bg-[#e4405f]/10 text-[0.9rem] font-[850] text-[#e4405f]">◎</span>
           <span>
-            <small>Instagram</small>
-            <strong>@your_vibe_handle</strong>
+            <small class="block text-[0.72rem] text-muted">Instagram</small>
+            <strong class="mt-0.5 block text-[0.9rem]">@your_vibe_handle</strong>
           </span>
         </a>
 
-        <a class="contact-item" href="#" aria-label="GitHub 프로필">
-          <span class="contact-item__icon contact-item__icon--github">&lt;/&gt;</span>
+        <a class="flex items-center gap-4 rounded-2xl border border-transparent p-3 text-inherit no-underline transition-[background-color,border-color] duration-150 hover:border-brand/10 hover:bg-brand/[0.045]" href="#" aria-label="GitHub 프로필">
+          <span class="grid aspect-square w-10 shrink-0 place-items-center rounded-full bg-[#24292f]/10 text-[0.7rem] font-[850] text-[#24292f]">&lt;/&gt;</span>
           <span>
-            <small>GitHub</small>
-            <strong>github.com/kim-gyeong-han</strong>
+            <small class="block text-[0.72rem] text-muted">GitHub</small>
+            <strong class="mt-0.5 block text-[0.9rem]">github.com/kim-gyeong-han</strong>
           </span>
         </a>
       </div>

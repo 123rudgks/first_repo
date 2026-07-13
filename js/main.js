@@ -86,6 +86,24 @@
     },
   ];
 
+  const TRACK_ITEM_BASE_CLASSES =
+    "grid w-full grid-cols-[auto_1fr] gap-3.5 rounded-2xl border p-4 text-left transition-[background-color,border-color,box-shadow,transform] duration-300 md:grid-cols-[minmax(0,1fr)_10rem] md:items-center md:px-6";
+  const TRACK_ITEM_DEFAULT_CLASSES =
+    "cursor-pointer border-transparent bg-white/40 hover:-translate-y-0.5 hover:border-brand/10 hover:bg-brand/[0.04]";
+  const TRACK_ITEM_SELECTED_CLASSES =
+    "-translate-y-0.5 cursor-pointer border-brand/20 bg-surface shadow-[0_0.65rem_1.5rem_rgba(20,40,160,0.08)]";
+  const HASHTAG_CLASSES =
+    "rounded-xl border border-brand/10 bg-surface px-3.5 py-1.5 text-[0.82rem] font-[750] text-brand shadow-[0_0.25rem_0.6rem_rgba(20,40,160,0.05)]";
+  const STORY_TRANSITION_CLASSES = ["translate-y-[0.9rem]", "opacity-0"];
+  const TOAST_VISIBLE_CLASSES = ["translate-y-0", "opacity-100"];
+  const RECORD_SPIN_CLASS = "animate-record-spin";
+  const EQUALIZER_ANIMATION_CLASSES = [
+    "animate-equalizer-1",
+    "animate-equalizer-2",
+    "animate-equalizer-3",
+    "animate-equalizer-4",
+  ];
+
   const state = {
     currentTrackIndex: 0,
     isVisuallyPlaying: true,
@@ -123,13 +141,12 @@
     elements.visualPlayButton = document.querySelector("#visual-play-button");
     elements.visualPlayIcon = document.querySelector("#visual-play-icon");
     elements.playerDisc = document.querySelector("#player-disc");
-    elements.equalizer = document.querySelector(".equalizer");
+    elements.equalizer = document.querySelector("#equalizer");
     elements.toast = document.querySelector("#toast-notification");
     elements.toastMessage = document.querySelector("#toast-message");
     elements.toastCloseButton = document.querySelector("#toast-close-button");
     elements.contactModal = document.querySelector("#contact-modal");
     elements.openContactButton = document.querySelector("#open-contact-modal");
-    elements.modalPanel = elements.contactModal.querySelector(".modal__panel");
   }
 
   function bindEvents() {
@@ -189,39 +206,45 @@
     const button = document.createElement("button");
 
     button.type = "button";
-    button.className = `track-item${isSelected ? " is-selected" : ""}`;
+    button.className = [
+      TRACK_ITEM_BASE_CLASSES,
+      isSelected ? TRACK_ITEM_SELECTED_CLASSES : TRACK_ITEM_DEFAULT_CLASSES,
+    ].join(" ");
     button.dataset.trackIndex = String(index);
     button.setAttribute("aria-pressed", String(isSelected));
 
     const numberContent = isSelected
       ? `
-        <span class="track-item__indicator" aria-label="현재 선택된 트랙">
-          <span></span><span></span><span></span>
+        <span class="flex h-3.5 items-end justify-center gap-0.5" aria-label="현재 선택된 트랙">
+          <span class="h-[45%] w-[3px] rounded-full bg-brand"></span>
+          <span class="h-full w-[3px] rounded-full bg-brand"></span>
+          <span class="h-[65%] w-[3px] rounded-full bg-brand"></span>
         </span>
       `
       : String(track.id).padStart(2, "0");
 
     button.innerHTML = `
-      <span class="track-item__main">
-        <span class="track-item__number">${numberContent}</span>
+      <span class="grid min-w-0 grid-cols-[2.5rem_3rem_minmax(0,1fr)] items-center md:grid-cols-[3rem_4rem_minmax(0,1fr)]">
+        <span class="text-center text-[0.9rem] font-[750] ${isSelected ? "text-brand" : "text-muted"}">${numberContent}</span>
 
-        <span class="track-item__cover">
+        <span class="aspect-square w-11 overflow-hidden rounded-[0.7rem] border border-brand/10 bg-canvas shadow-[0_0.2rem_0.55rem_rgba(15,23,42,0.07)] md:w-12">
           <img
+            class="size-full object-cover"
             src="${track.cover}"
             data-fallback-src="${FALLBACK_COVER}"
             alt=""
           >
         </span>
 
-        <span class="track-item__info">
-          <span class="track-item__title">${track.title}</span>
-          <span class="track-item__artist">${track.artist}</span>
+        <span class="min-w-0 pl-3">
+          <span class="block overflow-hidden text-[clamp(0.98rem,2vw,1.08rem)] font-extrabold text-ellipsis whitespace-nowrap ${isSelected ? "text-brand" : "text-ink"}">${track.title}</span>
+          <span class="mt-0.5 block overflow-hidden text-[0.8rem] text-ellipsis whitespace-nowrap text-muted">${track.artist}</span>
         </span>
       </span>
 
-      <span class="track-item__vibe">
-        <span class="track-item__vibe-label">Vibe</span>
-        <span class="track-item__vibe-text">${track.vibe}</span>
+      <span class="col-start-2 flex min-w-0 items-center gap-2 pl-[3.7rem] text-[0.82rem] font-bold text-muted md:col-auto md:justify-end md:pl-0 md:text-right">
+        <span class="rounded-[0.35rem] bg-brand/[0.08] px-2 py-0.5 text-[0.62rem] tracking-[0.08em] text-brand uppercase md:hidden">Vibe</span>
+        <span class="block overflow-hidden text-ellipsis whitespace-nowrap ${isSelected ? "text-brand" : "text-muted"}">${track.vibe}</span>
       </span>
     `;
 
@@ -249,7 +272,7 @@
     const track = TRACKS[state.currentTrackIndex];
 
     if (animate) {
-      elements.playerContent.classList.add("is-transitioning");
+      elements.playerContent.classList.add(...STORY_TRANSITION_CLASSES);
     }
 
     window.setTimeout(
@@ -270,7 +293,7 @@
         updateNavigationButtons();
         bindImageFallbacks(elements.playerCover.parentElement);
 
-        elements.playerContent.classList.remove("is-transitioning");
+        elements.playerContent.classList.remove(...STORY_TRANSITION_CLASSES);
       },
       animate ? 180 : 0,
     );
@@ -281,7 +304,7 @@
 
     hashtags.forEach((hashtag) => {
       const item = document.createElement("span");
-      item.className = "hashtag";
+      item.className = HASHTAG_CLASSES;
       item.textContent = `#${hashtag}`;
       fragment.append(item);
     });
@@ -332,8 +355,10 @@
   function updateVisualPlaybackUI() {
     const isPlaying = state.isVisuallyPlaying;
 
-    elements.playerDisc.classList.toggle("is-playing", isPlaying);
-    elements.equalizer.classList.toggle("is-playing", isPlaying);
+    elements.playerDisc.classList.toggle(RECORD_SPIN_CLASS, isPlaying);
+    Array.from(elements.equalizer.children).forEach((bar, index) => {
+      bar.classList.toggle(EQUALIZER_ANIMATION_CLASSES[index], isPlaying);
+    });
     elements.visualPlayButton.setAttribute("aria-pressed", String(isPlaying));
     elements.visualPlayButton.setAttribute(
       "aria-label",
@@ -352,7 +377,7 @@
     elements.toast.hidden = false;
 
     requestAnimationFrame(() => {
-      elements.toast.classList.add("is-visible");
+      elements.toast.classList.add(...TOAST_VISIBLE_CLASSES);
     });
 
     state.toastTimer = window.setTimeout(hideToast, 3000);
@@ -360,10 +385,10 @@
 
   function hideToast() {
     window.clearTimeout(state.toastTimer);
-    elements.toast.classList.remove("is-visible");
+    elements.toast.classList.remove(...TOAST_VISIBLE_CLASSES);
 
     window.setTimeout(() => {
-      if (!elements.toast.classList.contains("is-visible")) {
+      if (!elements.toast.classList.contains("opacity-100")) {
         elements.toast.hidden = true;
       }
     }, 300);
@@ -385,7 +410,7 @@
   function openContactModal() {
     state.lastFocusedElement = document.activeElement;
     elements.contactModal.hidden = false;
-    document.body.classList.add("modal-open");
+    document.body.classList.add("overflow-hidden");
 
     const closeButton = elements.contactModal.querySelector("[data-modal-close]");
     closeButton?.focus();
@@ -397,7 +422,7 @@
     }
 
     elements.contactModal.hidden = true;
-    document.body.classList.remove("modal-open");
+    document.body.classList.remove("overflow-hidden");
     state.lastFocusedElement?.focus();
   }
 
