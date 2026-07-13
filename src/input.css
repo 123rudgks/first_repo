@@ -1,7 +1,11 @@
 @import "tailwindcss";
 
 @source "../index.html";
+@source "../tracklist.html";
+@source "../now-playing.html";
+@source "../outro.html";
 @source "../js/main.js";
+@source "../js/components/sidebar.js";
 
 @theme {
   --font-sans:
@@ -26,10 +30,6 @@
 }
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-
   body {
     font-synthesis: none;
     line-height: 1.5;

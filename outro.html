@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Play My Vibe 자기소개 앨범의 마무리와 연락처를 제공하는 Outro 페이지">
+  <title>Outro | Play My Vibe</title>
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
+  >
+  <link rel="stylesheet" href="./css/style.css">
+  <script type="module" src="./js/main.js"></script>
+</head>
+
+<body data-page="outro" class="overflow-x-hidden bg-canvas font-sans text-ink antialiased">
+  <app-sidebar class="contents" current-page="outro"></app-sidebar>
+
+  <div
+    data-page-shell
+    class="min-h-screen transition-[padding-left] duration-300 ease-in-out lg:pl-72"
+  >
+    <svg aria-hidden="true" class="absolute size-0 overflow-hidden" data-icon-sprite="">
+    <symbol id="icon-play" viewbox="0 0 24 24">
+    <path d="M8 5.5v13l10-6.5L8 5.5Z" fill="currentColor"></path>
+    </symbol>
+    <symbol id="icon-pause" viewbox="0 0 24 24">
+    <path d="M7 5h4v14H7zM13 5h4v14h-4z" fill="currentColor"></path>
+    </symbol>
+    <symbol id="icon-chevron-down" viewbox="0 0 24 24">
+    <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+    </symbol>
+    <symbol id="icon-previous" viewbox="0 0 24 24">
+    <path d="M6 5v14M18 6.5 9 12l9 5.5v-11Z" fill="currentColor"></path>
+    </symbol>
+    <symbol id="icon-next" viewbox="0 0 24 24">
+    <path d="M18 5v14M6 6.5 15 12l-9 5.5v-11Z" fill="currentColor"></path>
+    </symbol>
+    <symbol id="icon-arrow-up" viewbox="0 0 24 24">
+    <path d="m6 11 6-6 6 6M12 5v14" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+    </symbol>
+    <symbol id="icon-send" viewbox="0 0 24 24">
+    <path d="m21 3-8.5 18-3.2-7.3L2 10.5 21 3Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"></path>
+    <path d="m9.3 13.7 4.6-4.6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+    </symbol>
+    <symbol id="icon-close" viewbox="0 0 24 24">
+    <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+    </symbol>
+    <symbol id="icon-disc" viewbox="0 0 24 24">
+    <circle cx="12" cy="12" fill="none" r="9" stroke="currentColor" stroke-width="1.7"></circle>
+    <circle cx="12" cy="12" fill="none" r="3" stroke="currentColor" stroke-width="1.7"></circle>
+    <circle cx="12" cy="12" fill="currentColor" r="0.8"></circle>
+    </symbol>
+    <symbol id="icon-heart" viewbox="0 0 24 24">
+    <path d="M20.8 5.8a5.3 5.3 0 0 0-7.5 0L12 7.1l-1.3-1.3a5.3 5.3 0 1 0-7.5 7.5L12 22l8.8-8.7a5.3 5.3 0 0 0 0-7.5Z" fill="currentColor"></path>
+    </symbol>
+    </svg>
+
+    <main>
+      <section class="relative grid min-h-screen place-items-center overflow-hidden px-[clamp(1rem,4vw,2rem)] py-[clamp(5rem,9vw,7.5rem)] max-sm:min-h-0 max-sm:py-20 min-h-[100svh]" id="outro">
+      <div aria-hidden="true" class="pointer-events-none absolute top-1/2 left-1/2 size-[38rem] -translate-1/2 rounded-full bg-brand/[0.035] blur-[120px]"></div>
+      <div class="relative z-[2] flex w-full max-w-[42rem] flex-col items-center text-center">
+      <svg aria-hidden="true" class="mb-8 size-[clamp(3.5rem,10vw,4.5rem)] shrink-0 text-brand/40">
+      <use href="#icon-disc"></use>
+      </svg>
+      <h2 class="m-0 text-[clamp(2.25rem,7vw,3.2rem)] leading-[1.16] font-black tracking-[-0.045em]">
+                This was my vibe.<br/>
+      <span class="text-brand">What’s yours?</span>
+      </h2>
+      <p class="mt-6 mb-12 text-[clamp(0.95rem,2.5vw,1.08rem)] leading-[1.8] text-muted">
+                플레이리스트를 들어주셔서 감사합니다.<br/>
+                제가 어떤 느낌의 사람인지 전달이 되었나요?<br/>
+                여러분들의 플레이리스트도 궁금합니다.
+              </p>
+      <div class="flex flex-wrap justify-center gap-4 max-sm:w-full max-sm:flex-col">
+      <a class="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2.5 rounded-full border-2 border-brand/25 bg-transparent px-7 py-3.5 font-[750] text-ink transition-[background-color,border-color,color,transform] duration-300 hover:-translate-y-0.5 hover:border-brand hover:bg-brand hover:text-white active:scale-[0.97] max-sm:w-full no-underline" href="./index.html">
+      <svg aria-hidden="true" class="size-[1.1em] shrink-0"><use href="#icon-arrow-up"></use></svg>
+      <span>처음부터 다시 보기</span>
+      </a>
+      <button class="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2.5 rounded-full bg-ink px-7 py-3.5 font-[750] text-white transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-brand active:scale-[0.97] max-sm:w-full" id="open-contact-modal" type="button">
+      <svg aria-hidden="true" class="size-[1.1em] shrink-0"><use href="#icon-send"></use></svg>
+      <span>연락처 &amp; SNS</span>
+      </button>
+      </div>
+      </div>
+      </section>
+    </main>
+
+    <div aria-labelledby="contact-modal-title" aria-modal="true" class="fixed inset-0 z-[100] grid place-items-center p-4" hidden="" id="contact-modal" role="dialog">
+    <div class="absolute inset-0 bg-black/40 backdrop-blur-md" data-modal-close=""></div>
+    <section class="relative z-[1] w-full max-w-md animate-modal-enter rounded-[1.75rem] border border-brand/10 bg-surface p-[clamp(1.5rem,5vw,2rem)] shadow-[0_2rem_4rem_rgba(15,23,42,0.25)]">
+    <header class="mb-6 flex items-start justify-between gap-4">
+    <div>
+    <h2 class="m-0 text-xl font-[850]" id="contact-modal-title">연락처 &amp; 소셜 네트워크</h2>
+    <p class="mt-1 mb-0 text-[0.8rem] text-muted">김경한 학우의 소식을 더 만나보세요.</p>
+    </div>
+    <button aria-label="연락처 창 닫기" class="grid aspect-square w-8 shrink-0 cursor-pointer place-items-center rounded-full bg-transparent text-muted transition-colors duration-150 hover:bg-brand/[0.08] hover:text-brand" data-modal-close="" type="button">
+    <svg aria-hidden="true" class="size-[1.1em] shrink-0"><use href="#icon-close"></use></svg>
+    </button>
+    </header>
+    <div class="grid gap-2.5">
+    <a aria-label="Facebook 김경한" class="flex items-center gap-4 rounded-2xl border border-transparent p-3 text-inherit no-underline transition-[background-color,border-color] duration-150 hover:border-brand/10 hover:bg-brand/[0.045]" href="#">
+    <span class="grid aspect-square w-10 shrink-0 place-items-center rounded-full bg-[#1877f2]/10 text-[0.9rem] font-[850] text-[#1877f2]">f</span>
+    <span>
+    <small class="block text-[0.72rem] text-muted">Facebook</small>
+    <strong class="mt-0.5 block text-[0.9rem]">김경한</strong>
+    </span>
+    </a>
+    <a aria-label="Instagram 프로필" class="flex items-center gap-4 rounded-2xl border border-transparent p-3 text-inherit no-underline transition-[background-color,border-color] duration-150 hover:border-brand/10 hover:bg-brand/[0.045]" href="#">
+    <span class="grid aspect-square w-10 shrink-0 place-items-center rounded-full bg-[#e4405f]/10 text-[0.9rem] font-[850] text-[#e4405f]">◎</span>
+    <span>
+    <small class="block text-[0.72rem] text-muted">Instagram</small>
+    <strong class="mt-0.5 block text-[0.9rem]">@your_vibe_handle</strong>
+    </span>
+    </a>
+    <a aria-label="GitHub 프로필" class="flex items-center gap-4 rounded-2xl border border-transparent p-3 text-inherit no-underline transition-[background-color,border-color] duration-150 hover:border-brand/10 hover:bg-brand/[0.045]" href="#">
+    <span class="grid aspect-square w-10 shrink-0 place-items-center rounded-full bg-[#24292f]/10 text-[0.7rem] font-[850] text-[#24292f]">&lt;/&gt;</span>
+    <span>
+    <small class="block text-[0.72rem] text-muted">GitHub</small>
+    <strong class="mt-0.5 block text-[0.9rem]">github.com/kim-gyeong-han</strong>
+    </span>
+    </a>
+    </div>
+    </section>
+    </div>
+  </div>
+</body>
+</html>

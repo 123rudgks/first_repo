@@ -1,97 +1,11 @@
+import "./components/sidebar.js";
+import { FALLBACK_COVER, TRACKS } from "./data/tracks.js";
+
 (() => {
   "use strict";
 
-  const FALLBACK_COVER =
-    "https://placehold.co/600x600/1428A0/FFFFFF?text=PLAY+MY+VIBE";
-
-  const TRACKS = [
-    {
-      id: 1,
-      title: "M",
-      artist: "Princess Princess",
-      vibe: "쓸쓸함 그리움",
-      summary:
-        "계절은 계속 바뀌지만, 헤어진 사람을 향한 마음만은 그 자리에 멈춰 있는 애절한 이별 노래.",
-      story:
-        "의무경찰 복무 시절, 후임에게 우연히 추천받아 알게 된 소중한 곡입니다. 눈이 쌓인 추운 겨울날, 긴장감 속에서 쓸쓸히 근무를 서며 이 노래를 종종 듣곤 했습니다.\n\n가장 기억에 남는 건 눈이 많이 내리던 날, 후임과 함께 경찰서 옥상에 올라가 눈사람을 만들고 옆에서 컵라면 끓여먹으면서 놀았던 순간입니다. 조금 유치할지 몰라도, 저는 이런 소소한 즐거움을 좋아하는것 같습니다.",
-      hashtags: ["의무경찰", "소소한즐거움"],
-      cover: "./assets/images/m.jpg",
-      currentTime: "01:24",
-      duration: "04:36",
-      progress: 30,
-    },
-    {
-      id: 2,
-      title: "Out of Time",
-      artist: "The Weeknd",
-      vibe: "시티팝 몽환적",
-      summary:
-        "사랑할 준비가 너무 늦게 끝난 순간, 이미 시간이 다 지나버렸음을 깨닫는 노래",
-      story:
-        "이 노래는 위켄드가 Midnight Pretenders라는 일본의 아란 토모코 가수의 노래를 샘플링하여 만든 노래입니다. 저는 음악 장르 중에 시티팝이란 장르를 좋아하는데, 시티팝 위에 rnb 가수 멜로디가 섞이니까 독보적인 음악이 나온것 같습니다. 위켄드 노래 중에 제일 좋아하는 노래입니다.",
-      hashtags: ["시티팝"],
-      cover:
-        "./assets/images/out of time.jpg",
-      currentTime: "02:10",
-      duration: "04:02",
-      progress: 54,
-    },
-    {
-      id: 3,
-      title: "My Jinji",
-      artist: "Sunset Rollercoaster",
-      vibe: "몽환적 나른함",
-      summary:
-        "시간이 멈춰버린 듯한 밤, 사랑하는 사람에게 곁을 떠나지 말아 달라고 조용히 속삭이는 노래.",
-      story:
-        "이 노래는 친구랑 LP바를 갔을 때 친구가 선곡하여 처음 듣게 된 노래입니다. 저는 노을지는 날에 멍때리는 걸 좋아하는데 밴드의 이름 처럼 노을지는 날에 들으면 나른해지는 느낌이 듭니다. 주로 노을질때 2호선 타고 한강 건널때 들으면 갬성 폭발합니다.",
-      hashtags: ["갬성", "노을", "LP바"],
-      cover:
-        "./assets/images/my jinji.jpg",
-      currentTime: "00:58",
-      duration: "03:24",
-      progress: 29,
-    },
-    {
-      id: 4,
-      title: "Bubble Gum",
-      artist: "New Jeans",
-      vibe: "청량함 Y2K 감성",
-      summary:
-        "좋아하는 사람과 함께하는 순간이 풍선껌처럼 달콤하고 가볍게 부풀어 오르는 노래.",
-      story:
-        "원래 아이돌 음악을 선호하지 않는데 뉴진스의 음악은 다른 아이돌 음악과는 다르게 느껴져서 팬이 되었습니다. 뉴진스 노래 중에서 이 곡을 가장 좋아하며 인생 처음으로 앨범을 샀습니다. 이 앨범 이후에 뉴진스가 갑자기 사라져버려서 슬프네요. 최근에는 리센느가 조금씩 마음에 들어오고 있습니다.",
-      hashtags: ["리센느", "야호"],
-      cover:
-        "./assets/images/bubblegum.jpg",
-      currentTime: "01:15",
-      duration: "03:17",
-      progress: 38,
-    },
-    {
-      id: 5,
-      title: "한번더이별",
-      artist: "성시경",
-      vibe: "이별 추억",
-      summary:
-        "이미 헤어진 사람을 마음속에서 다시 떠나보내며, 끝난 사랑과 한 번 더 이별하는 노래.",
-      story:
-        "제가 제일 좋아하는 가수 중에 한명이 성시경인데 그 중에서도 제일 좋아하는 노래가 이 노래입니다. 처음에는 멜로디가 좋아서 들었지만 가사를 정독해본 이후에는 가사가 좋아서 듣게 되는것 같습니다.",
-      hashtags: ["최애 가수", "좋은 가사"],
-      cover:
-        "./assets/images/한번더이별.jpg",
-      currentTime: "03:02",
-      duration: "04:35",
-      progress: 66,
-    },
-  ];
-
-  const TRACK_ITEM_BASE_CLASSES =
-    "grid w-full grid-cols-[auto_1fr] gap-3.5 rounded-2xl border p-4 text-left transition-[background-color,border-color,box-shadow,transform] duration-300 md:grid-cols-[minmax(0,1fr)_10rem] md:items-center md:px-6";
-  const TRACK_ITEM_DEFAULT_CLASSES =
-    "cursor-pointer border-transparent bg-white/40 hover:-translate-y-0.5 hover:border-brand/10 hover:bg-brand/[0.04]";
-  const TRACK_ITEM_SELECTED_CLASSES =
-    "-translate-y-0.5 cursor-pointer border-brand/20 bg-surface shadow-[0_0.65rem_1.5rem_rgba(20,40,160,0.08)]";
+  const TRACK_ITEM_CLASSES =
+    "group grid w-full grid-cols-[auto_1fr] gap-3.5 rounded-2xl border border-transparent bg-white/40 p-4 text-left no-underline transition-[background-color,border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-brand/10 hover:bg-brand/[0.04] hover:shadow-[0_0.65rem_1.5rem_rgba(20,40,160,0.07)] focus-visible:border-brand/20 focus-visible:bg-surface md:grid-cols-[minmax(0,1fr)_10rem] md:items-center md:px-6";
   const HASHTAG_CLASSES =
     "rounded-xl border border-brand/10 bg-surface px-3.5 py-1.5 text-[0.82rem] font-[750] text-brand shadow-[0_0.25rem_0.6rem_rgba(20,40,160,0.05)]";
   const STORY_TRANSITION_CLASSES = ["translate-y-[0.9rem]", "opacity-0"];
@@ -114,16 +28,96 @@
   const elements = {};
 
   function initialize() {
-    cacheElements();
-    bindEvents();
-    renderTrackList();
-    updatePlayer({ animate: false });
-    updateVisualPlaybackUI();
     bindImageFallbacks(document);
+
+    switch (document.body.dataset.page) {
+      case "tracklist":
+        initializeTrackListPage();
+        break;
+      case "now-playing":
+        initializeNowPlayingPage();
+        break;
+      case "outro":
+        initializeOutroPage();
+        break;
+      default:
+        break;
+    }
   }
 
-  function cacheElements() {
+  function initializeTrackListPage() {
     elements.trackList = document.querySelector("#tracks-container");
+
+    if (!elements.trackList) {
+      return;
+    }
+
+    renderTrackList();
+  }
+
+  function renderTrackList() {
+    const fragment = document.createDocumentFragment();
+
+    TRACKS.forEach((track) => {
+      fragment.append(createTrackItem(track));
+    });
+
+    elements.trackList.replaceChildren(fragment);
+    bindImageFallbacks(elements.trackList);
+  }
+
+  function createTrackItem(track) {
+    const link = document.createElement("a");
+
+    link.className = TRACK_ITEM_CLASSES;
+    link.href = `./now-playing.html?track=${encodeURIComponent(track.id)}`;
+    link.setAttribute(
+      "aria-label",
+      `${track.title}, ${track.artist}의 이야기를 Now Playing 페이지에서 보기`,
+    );
+
+    link.innerHTML = `
+      <span class="grid min-w-0 grid-cols-[2.5rem_3rem_minmax(0,1fr)] items-center md:grid-cols-[3rem_4rem_minmax(0,1fr)]">
+        <span class="text-center text-[0.9rem] font-[750] text-muted transition-colors duration-200 group-hover:text-brand">${String(track.id).padStart(2, "0")}</span>
+
+        <span class="aspect-square w-11 overflow-hidden rounded-[0.7rem] border border-brand/10 bg-canvas shadow-[0_0.2rem_0.55rem_rgba(15,23,42,0.07)] md:w-12">
+          <img
+            class="size-full object-cover transition-transform duration-300 group-hover:scale-105"
+            src="${track.cover}"
+            data-fallback-src="${FALLBACK_COVER}"
+            alt=""
+          >
+        </span>
+
+        <span class="min-w-0 pl-3">
+          <span class="block overflow-hidden text-[clamp(0.98rem,2vw,1.08rem)] font-extrabold text-ellipsis whitespace-nowrap text-ink transition-colors duration-200 group-hover:text-brand">${track.title}</span>
+          <span class="mt-0.5 block overflow-hidden text-[0.8rem] text-ellipsis whitespace-nowrap text-muted">${track.artist}</span>
+        </span>
+      </span>
+
+      <span class="col-start-2 flex min-w-0 items-center gap-2 pl-[3.7rem] text-[0.82rem] font-bold text-muted md:col-auto md:justify-end md:pl-0 md:text-right">
+        <span class="rounded-[0.35rem] bg-brand/[0.08] px-2 py-0.5 text-[0.62rem] tracking-[0.08em] text-brand uppercase md:hidden">Vibe</span>
+        <span class="block overflow-hidden text-ellipsis whitespace-nowrap transition-colors duration-200 group-hover:text-brand">${track.vibe}</span>
+      </span>
+    `;
+
+    return link;
+  }
+
+  function initializeNowPlayingPage() {
+    cachePlayerElements();
+
+    if (!hasRequiredPlayerElements()) {
+      return;
+    }
+
+    state.currentTrackIndex = getTrackIndexFromUrl();
+    bindPlayerEvents();
+    updatePlayer({ animate: false });
+    updateVisualPlaybackUI();
+  }
+
+  function cachePlayerElements() {
     elements.playerContent = document.querySelector("#np-content-area");
     elements.playerCover = document.querySelector("#np-cover");
     elements.playerTitle = document.querySelector("#np-title");
@@ -145,126 +139,76 @@
     elements.toast = document.querySelector("#toast-notification");
     elements.toastMessage = document.querySelector("#toast-message");
     elements.toastCloseButton = document.querySelector("#toast-close-button");
-    elements.contactModal = document.querySelector("#contact-modal");
-    elements.openContactButton = document.querySelector("#open-contact-modal");
   }
 
-  function bindEvents() {
-    document.addEventListener("click", handleDocumentClick);
-    elements.trackList.addEventListener("click", handleTrackListClick);
+  function hasRequiredPlayerElements() {
+    return [
+      elements.playerContent,
+      elements.playerCover,
+      elements.playerTitle,
+      elements.playerArtist,
+      elements.playerCurrentTime,
+      elements.playerTotalTime,
+      elements.playerProgressFill,
+      elements.playerProgressThumb,
+      elements.playerVibe,
+      elements.playerSummary,
+      elements.playerStory,
+      elements.playerHashtags,
+      elements.previousButton,
+      elements.nextButton,
+      elements.visualPlayButton,
+      elements.visualPlayIcon,
+      elements.playerDisc,
+      elements.equalizer,
+      elements.toast,
+      elements.toastMessage,
+      elements.toastCloseButton,
+    ].every(Boolean);
+  }
+
+  function bindPlayerEvents() {
     elements.previousButton.addEventListener("click", showPreviousTrack);
     elements.nextButton.addEventListener("click", showNextTrack);
     elements.visualPlayButton.addEventListener("click", toggleVisualPlayState);
     elements.toastCloseButton.addEventListener("click", hideToast);
-    elements.openContactButton.addEventListener("click", openContactModal);
-    document.addEventListener("keydown", handleKeydown);
+    window.addEventListener("popstate", handlePlayerHistoryChange);
   }
 
-  function handleDocumentClick(event) {
-    const scrollTrigger = event.target.closest("[data-scroll-target]");
+  function getTrackIndexFromUrl() {
+    const requestedTrackId = Number(
+      new URLSearchParams(window.location.search).get("track"),
+    );
+    const requestedIndex = TRACKS.findIndex(
+      (track) => track.id === requestedTrackId,
+    );
 
-    if (scrollTrigger) {
-      scrollToSection(scrollTrigger.dataset.scrollTarget);
-      return;
-    }
-
-    if (event.target.closest("[data-modal-close]")) {
-      closeContactModal();
-    }
+    return requestedIndex >= 0 ? requestedIndex : 0;
   }
 
-  function handleTrackListClick(event) {
-    const trackButton = event.target.closest("[data-track-index]");
-
-    if (!trackButton) {
-      return;
-    }
-
-    const trackIndex = Number(trackButton.dataset.trackIndex);
-    selectTrack(trackIndex, { scroll: true });
-  }
-
-  function handleKeydown(event) {
-    if (event.key === "Escape" && !elements.contactModal.hidden) {
-      closeContactModal();
-    }
-  }
-
-  function renderTrackList() {
-    const fragment = document.createDocumentFragment();
-
-    TRACKS.forEach((track, index) => {
-      fragment.append(createTrackItem(track, index));
-    });
-
-    elements.trackList.replaceChildren(fragment);
-    bindImageFallbacks(elements.trackList);
-  }
-
-  function createTrackItem(track, index) {
-    const isSelected = index === state.currentTrackIndex;
-    const button = document.createElement("button");
-
-    button.type = "button";
-    button.className = [
-      TRACK_ITEM_BASE_CLASSES,
-      isSelected ? TRACK_ITEM_SELECTED_CLASSES : TRACK_ITEM_DEFAULT_CLASSES,
-    ].join(" ");
-    button.dataset.trackIndex = String(index);
-    button.setAttribute("aria-pressed", String(isSelected));
-
-    const numberContent = isSelected
-      ? `
-        <span class="flex h-3.5 items-end justify-center gap-0.5" aria-label="현재 선택된 트랙">
-          <span class="h-[45%] w-[3px] rounded-full bg-brand"></span>
-          <span class="h-full w-[3px] rounded-full bg-brand"></span>
-          <span class="h-[65%] w-[3px] rounded-full bg-brand"></span>
-        </span>
-      `
-      : String(track.id).padStart(2, "0");
-
-    button.innerHTML = `
-      <span class="grid min-w-0 grid-cols-[2.5rem_3rem_minmax(0,1fr)] items-center md:grid-cols-[3rem_4rem_minmax(0,1fr)]">
-        <span class="text-center text-[0.9rem] font-[750] ${isSelected ? "text-brand" : "text-muted"}">${numberContent}</span>
-
-        <span class="aspect-square w-11 overflow-hidden rounded-[0.7rem] border border-brand/10 bg-canvas shadow-[0_0.2rem_0.55rem_rgba(15,23,42,0.07)] md:w-12">
-          <img
-            class="size-full object-cover"
-            src="${track.cover}"
-            data-fallback-src="${FALLBACK_COVER}"
-            alt=""
-          >
-        </span>
-
-        <span class="min-w-0 pl-3">
-          <span class="block overflow-hidden text-[clamp(0.98rem,2vw,1.08rem)] font-extrabold text-ellipsis whitespace-nowrap ${isSelected ? "text-brand" : "text-ink"}">${track.title}</span>
-          <span class="mt-0.5 block overflow-hidden text-[0.8rem] text-ellipsis whitespace-nowrap text-muted">${track.artist}</span>
-        </span>
-      </span>
-
-      <span class="col-start-2 flex min-w-0 items-center gap-2 pl-[3.7rem] text-[0.82rem] font-bold text-muted md:col-auto md:justify-end md:pl-0 md:text-right">
-        <span class="rounded-[0.35rem] bg-brand/[0.08] px-2 py-0.5 text-[0.62rem] tracking-[0.08em] text-brand uppercase md:hidden">Vibe</span>
-        <span class="block overflow-hidden text-ellipsis whitespace-nowrap ${isSelected ? "text-brand" : "text-muted"}">${track.vibe}</span>
-      </span>
-    `;
-
-    return button;
+  function handlePlayerHistoryChange() {
+    selectTrack(getTrackIndexFromUrl(), { animate: true, updateUrl: false });
   }
 
   function selectTrack(index, options = {}) {
-    const { scroll = false } = options;
+    const { animate = true, updateUrl = true } = options;
 
     if (!Number.isInteger(index) || index < 0 || index >= TRACKS.length) {
       return;
     }
 
     state.currentTrackIndex = index;
-    renderTrackList();
-    updatePlayer({ animate: true });
+    updatePlayer({ animate });
 
-    if (scroll) {
-      scrollToSection("now-playing");
+    if (updateUrl) {
+      updateTrackQueryParameter(TRACKS[index].id);
     }
+  }
+
+  function updateTrackQueryParameter(trackId) {
+    const url = new URL(window.location.href);
+    url.searchParams.set("track", String(trackId));
+    window.history.pushState({ trackId }, "", url);
   }
 
   function updatePlayer(options = {}) {
@@ -291,8 +235,7 @@
 
         renderHashtags(track.hashtags);
         updateNavigationButtons();
-        bindImageFallbacks(elements.playerCover.parentElement);
-
+        bindImageFallbacks(elements.playerCover);
         elements.playerContent.classList.remove(...STORY_TRANSITION_CLASSES);
       },
       animate ? 180 : 0,
@@ -317,7 +260,7 @@
     elements.nextButton.setAttribute(
       "aria-label",
       state.currentTrackIndex === TRACKS.length - 1
-        ? "마지막 인사로 이동"
+        ? "Outro 페이지로 이동"
         : "다음 트랙",
     );
   }
@@ -334,7 +277,7 @@
     const isLastTrack = state.currentTrackIndex === TRACKS.length - 1;
 
     if (isLastTrack) {
-      scrollToSection("outro");
+      window.location.href = "./outro.html";
       return;
     }
 
@@ -394,17 +337,55 @@
     }, 300);
   }
 
-  function scrollToSection(sectionId) {
-    const section = document.getElementById(sectionId);
+  function initializeOutroPage() {
+    elements.contactModal = document.querySelector("#contact-modal");
+    elements.openContactButton = document.querySelector("#open-contact-modal");
 
-    if (!section) {
+    if (!elements.contactModal || !elements.openContactButton) {
       return;
     }
 
-    section.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+    elements.openContactButton.addEventListener("click", openContactModal);
+    elements.contactModal.addEventListener("click", handleModalClick);
+    document.addEventListener("keydown", handleModalKeydown);
+  }
+
+  function handleModalClick(event) {
+    if (event.target.closest("[data-modal-close]")) {
+      closeContactModal();
+    }
+  }
+
+  function handleModalKeydown(event) {
+    if (elements.contactModal.hidden) {
+      return;
+    }
+
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeContactModal();
+      return;
+    }
+
+    if (event.key !== "Tab") {
+      return;
+    }
+
+    const focusableElements = Array.from(
+      elements.contactModal.querySelectorAll(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ),
+    );
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements.at(-1);
+
+    if (event.shiftKey && document.activeElement === firstElement) {
+      event.preventDefault();
+      lastElement?.focus();
+    } else if (!event.shiftKey && document.activeElement === lastElement) {
+      event.preventDefault();
+      firstElement?.focus();
+    }
   }
 
   function openContactModal() {
@@ -427,6 +408,10 @@
   }
 
   function bindImageFallbacks(scope) {
+    if (!scope) {
+      return;
+    }
+
     const images =
       scope instanceof HTMLImageElement
         ? [scope]

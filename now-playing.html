@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="선택한 음악과 연결된 김경한의 경험과 이야기를 보여주는 Now Playing 페이지">
+  <title>Now Playing | Play My Vibe</title>
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
+  >
+  <link rel="stylesheet" href="./css/style.css">
+  <script type="module" src="./js/main.js"></script>
+</head>
+
+<body data-page="now-playing" class="overflow-x-hidden bg-canvas font-sans text-ink antialiased">
+  <app-sidebar class="contents" current-page="now-playing"></app-sidebar>
+
+  <div
+    data-page-shell
+    class="min-h-screen transition-[padding-left] duration-300 ease-in-out lg:pl-72"
+  >
+    <svg aria-hidden="true" class="absolute size-0 overflow-hidden" data-icon-sprite="">
+    <symbol id="icon-play" viewbox="0 0 24 24">
+    <path d="M8 5.5v13l10-6.5L8 5.5Z" fill="currentColor"></path>
+    </symbol>
+    <symbol id="icon-pause" viewbox="0 0 24 24">
+    <path d="M7 5h4v14H7zM13 5h4v14h-4z" fill="currentColor"></path>
+    </symbol>
+    <symbol id="icon-chevron-down" viewbox="0 0 24 24">
+    <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+    </symbol>
+    <symbol id="icon-previous" viewbox="0 0 24 24">
+    <path d="M6 5v14M18 6.5 9 12l9 5.5v-11Z" fill="currentColor"></path>
+    </symbol>
+    <symbol id="icon-next" viewbox="0 0 24 24">
+    <path d="M18 5v14M6 6.5 15 12l-9 5.5v-11Z" fill="currentColor"></path>
+    </symbol>
+    <symbol id="icon-arrow-up" viewbox="0 0 24 24">
+    <path d="m6 11 6-6 6 6M12 5v14" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+    </symbol>
+    <symbol id="icon-send" viewbox="0 0 24 24">
+    <path d="m21 3-8.5 18-3.2-7.3L2 10.5 21 3Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"></path>
+    <path d="m9.3 13.7 4.6-4.6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+    </symbol>
+    <symbol id="icon-close" viewbox="0 0 24 24">
+    <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+    </symbol>
+    <symbol id="icon-disc" viewbox="0 0 24 24">
+    <circle cx="12" cy="12" fill="none" r="9" stroke="currentColor" stroke-width="1.7"></circle>
+    <circle cx="12" cy="12" fill="none" r="3" stroke="currentColor" stroke-width="1.7"></circle>
+    <circle cx="12" cy="12" fill="currentColor" r="0.8"></circle>
+    </symbol>
+    <symbol id="icon-heart" viewbox="0 0 24 24">
+    <path d="M20.8 5.8a5.3 5.3 0 0 0-7.5 0L12 7.1l-1.3-1.3a5.3 5.3 0 1 0-7.5 7.5L12 22l8.8-8.7a5.3 5.3 0 0 0 0-7.5Z" fill="currentColor"></path>
+    </symbol>
+    </svg>
+
+    <div aria-atomic="true" aria-live="polite" class="fixed right-[clamp(1rem,4vw,1.5rem)] bottom-[clamp(1rem,4vw,1.5rem)] z-[120] flex w-[calc(100%_-_2rem)] max-w-[23rem] translate-y-5 items-center gap-3 rounded-2xl bg-ink px-4 py-3.5 text-white opacity-0 shadow-[0_1rem_2.5rem_rgba(15,23,42,0.24)] transition-[opacity,transform] duration-300 ease-in-out" hidden="" id="toast-notification" role="status">
+    <span aria-hidden="true" class="grid size-8 shrink-0 place-items-center rounded-full bg-brand text-xs font-[850]">i</span>
+    <p class="m-0 flex-1 text-[0.8rem] leading-6 font-[650]" id="toast-message"></p>
+    <button aria-label="안내 메시지 닫기" class="grid size-8 cursor-pointer place-items-center rounded-full bg-transparent text-white/60 transition-colors duration-150 hover:bg-white/10 hover:text-white" id="toast-close-button" type="button">
+    <svg aria-hidden="true" class="size-[1.1em] shrink-0"><use href="#icon-close"></use></svg>
+    </button>
+    </div>
+
+    <main>
+      <section class="relative flex min-h-screen items-center overflow-hidden border-y border-brand/10 bg-surface px-[clamp(1rem,4vw,2rem)] py-[clamp(5rem,9vw,7.5rem)] max-sm:min-h-0 max-sm:py-20 min-h-[100svh]" id="now-playing">
+      <div aria-hidden="true" class="pointer-events-none absolute top-0 right-0 size-96 rounded-full bg-brand/[0.025] blur-[90px]"></div>
+      <div class="relative z-[2] mx-auto w-full max-w-5xl">
+      <header class="mb-[clamp(2.5rem,5vw,3.5rem)] text-center">
+      <p class="m-0 text-xs font-extrabold tracking-[0.14em] text-brand uppercase">Now Playing</p>
+      <h2 class="mt-[0.3rem] mb-0 text-[clamp(2rem,5vw,2.6rem)] font-[850] tracking-[-0.035em]">뮤직 플레이어 인터페이스</h2>
+      </header>
+      <div class="grid gap-[clamp(2.5rem,6vw,3.5rem)] lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-stretch">
+      <article aria-label="선택한 트랙 정보" class="relative flex flex-col justify-center rounded-4xl border border-brand/10 bg-canvas p-[clamp(1.5rem,4vw,2rem)] shadow-[inset_0_0_2rem_rgba(20,40,160,0.025)]">
+      <div class="relative mx-auto mb-8 aspect-square w-full max-w-80">
+      <div aria-hidden="true" class="absolute inset-0 scale-95 rounded-full bg-brand/[0.06] blur-[18px]"></div>
+      <div class="relative grid size-full animate-record-spin place-items-center rounded-full border border-ink/10 bg-zinc-900 p-2 shadow-[0_1rem_2rem_rgba(15,23,42,0.22)]" id="player-disc">
+      <span aria-hidden="true" class="absolute inset-4 rounded-full border border-black/30 opacity-45"></span>
+      <span aria-hidden="true" class="absolute inset-10 rounded-full border border-black/30 opacity-45"></span>
+      <span aria-hidden="true" class="absolute inset-16 rounded-full border border-black/30 opacity-45"></span>
+      <span aria-hidden="true" class="absolute inset-24 rounded-full border border-black/30 opacity-45"></span>
+      <div class="relative grid size-full place-items-center overflow-hidden rounded-full border-2 border-zinc-800">
+      <img alt="선택한 트랙 커버" class="size-full object-cover" data-fallback-src="https://placehold.co/500x500/1428A0/FFFFFF?text=PLAYING" id="np-cover" src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&amp;w=500&amp;auto=format&amp;fit=crop"/>
+      <span aria-hidden="true" class="absolute grid aspect-square w-14 place-items-center rounded-full border-4 border-zinc-800 bg-zinc-900 shadow-[inset_0_0_0.8rem_rgba(0,0,0,0.4)]">
+      <span class="aspect-square w-4 rounded-full bg-canvas"></span>
+      </span>
+      </div>
+      </div>
+      </div>
+      <div class="mb-6 flex items-center justify-between gap-4">
+      <div class="min-w-0">
+      <h3 class="m-0 overflow-hidden text-[clamp(1.3rem,3vw,1.55rem)] font-[850] text-ellipsis whitespace-nowrap" id="np-title">Track Title</h3>
+      <p class="mt-1 mb-0 overflow-hidden text-[0.95rem] text-ellipsis whitespace-nowrap text-muted" id="np-artist">Artist Name</p>
+      </div>
+      <div aria-hidden="true" class="flex h-6 shrink-0 items-end gap-[3px] opacity-80" id="equalizer">
+      <span class="h-1/2 w-1 origin-bottom animate-equalizer-1 rounded-full bg-brand"></span>
+      <span class="h-[90%] w-1 origin-bottom animate-equalizer-2 rounded-full bg-brand"></span>
+      <span class="h-[35%] w-1 origin-bottom animate-equalizer-3 rounded-full bg-brand"></span>
+      <span class="h-[70%] w-1 origin-bottom animate-equalizer-4 rounded-full bg-brand"></span>
+      </div>
+      </div>
+      <div aria-label="고정된 재생 진행 상태" class="mb-7">
+      <div aria-hidden="true" class="relative h-1.5 rounded-full bg-brand/10">
+      <div class="h-full w-0 rounded-[inherit] bg-brand transition-[width] duration-300" id="np-progress-fill"></div>
+      <span class="absolute top-1/2 left-0 aspect-square w-3.5 -translate-1/2 rounded-full bg-brand shadow-[0_0.2rem_0.5rem_rgba(20,40,160,0.24)] transition-[left] duration-300" id="np-progress-thumb"></span>
+      </div>
+      <div class="mt-2.5 flex justify-between text-xs font-[750] text-muted">
+      <span id="np-time-current">00:00</span>
+      <span id="np-time-total">00:00</span>
+      </div>
+      </div>
+      <div class="flex items-center justify-center gap-6">
+      <button aria-label="이전 트랙" class="grid aspect-square w-12 cursor-pointer place-items-center rounded-full bg-transparent text-ink transition-[background-color,color,transform] duration-150 enabled:hover:bg-brand/[0.08] enabled:hover:text-brand enabled:active:scale-90 disabled:cursor-default disabled:opacity-30" id="previous-track-button" type="button">
+      <svg aria-hidden="true" class="size-[1.35rem] shrink-0">
+      <use href="#icon-previous"></use>
+      </svg>
+      </button>
+      <button aria-label="가상 재생 일시정지" aria-pressed="true" class="grid aspect-square w-16 cursor-pointer place-items-center rounded-full bg-brand text-white shadow-[0_0.7rem_1.3rem_rgba(20,40,160,0.28)] transition-[background-color,box-shadow,transform] duration-150 hover:scale-105 hover:bg-brand-light hover:shadow-[0_0.9rem_1.6rem_rgba(20,40,160,0.34)] active:scale-95" id="visual-play-button" type="button">
+      <svg aria-hidden="true" class="size-[1.35rem] shrink-0">
+      <use href="#icon-pause" id="visual-play-icon"></use>
+      </svg>
+      </button>
+      <button aria-label="다음 트랙" class="grid aspect-square w-12 cursor-pointer place-items-center rounded-full bg-transparent text-ink transition-[background-color,color,transform] duration-150 enabled:hover:bg-brand/[0.08] enabled:hover:text-brand enabled:active:scale-90 disabled:cursor-default disabled:opacity-30" id="next-track-button" type="button">
+      <svg aria-hidden="true" class="size-[1.35rem] shrink-0">
+      <use href="#icon-next"></use>
+      </svg>
+      </button>
+      </div>
+      </article>
+      <article aria-live="polite" class="flex flex-col justify-center transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]" id="np-content-area">
+      <p class="mb-4 inline-flex w-fit items-center gap-1.5 rounded-xl border border-brand/20 bg-brand/[0.08] px-3.5 py-1.5 text-[0.85rem] font-extrabold text-brand" id="np-vibe-badge">
+      <svg aria-hidden="true" class="size-3.5 shrink-0">
+      <use href="#icon-heart"></use>
+      </svg>
+      <span>대표 키워드</span>
+      </p>
+      <h3 class="mt-0 mb-6 text-[clamp(1.45rem,4vw,2rem)] leading-[1.3] font-[850] tracking-[-0.025em]" id="np-summary">
+                    한 줄 소개가 들어가는 자리입니다.
+                  </h3>
+      <p class="mt-0 mb-8 border-l-4 border-brand/10 py-1 pl-6 text-[clamp(1rem,2.5vw,1.1rem)] leading-[1.8] font-[520] whitespace-pre-line text-muted" id="np-story">
+                    여기에 선택한 음악과 관련된 본인의 경험과 이야기가 표시됩니다.
+                  </p>
+      <div aria-label="관련 키워드" class="flex flex-wrap gap-2.5" id="np-hashtags"></div>
+      </article>
+      </div>
+      </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
